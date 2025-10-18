@@ -1,59 +1,86 @@
-# TelesportDashboard
+# Telesport Dashboard
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.5.
+A responsive Angular application displaying Olympic Games data with interactive charts and statistics.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- 📊 **Interactive Charts**: Pie chart for medal distribution and line chart for country details
+- 📱 **Responsive Design**: Optimized for desktop, tablet, and mobile devices
+- 🎯 **Olympic Data Visualization**: View medals per country and detailed statistics
+- 🚀 **Modern Angular**: Built with Angular 20+ standalone components and signals
 
-```bash
-ng serve
-```
+## Tech Stack
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Angular 20.3+** with standalone components
+- **TypeScript 5.9+**
+- **ngx-charts** for data visualization
+- **RxJS** for reactive programming
+- **SCSS** for styling
 
-## Code scaffolding
+## Getting Started
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Prerequisites
 
-```bash
-ng generate component component-name
-```
+- Node.js (v16 or higher)
+- npm or yarn
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Installation
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+1. Clone the repository:
 
 ```bash
-ng build
+git clone https://github.com/MaxLeblc/telesport-dashboard.git
+cd telesport-dashboard
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+2. Install dependencies:
 
 ```bash
-ng test
+npm install
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+3. Start the development server:
 
 ```bash
-ng e2e
+npm start
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+4. Open your browser and navigate to `http://localhost:4200/`
 
-## Additional Resources
+## Project Structure
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```
+src/
+├── app/
+│   ├── components/        # Reusable components (charts)
+│   ├── core/
+│   │   ├── models/        # Data models
+│   │   └── services/      # Business logic services
+│   ├── pages/             # Route components
+│   │   ├── home/          # Home page with overview
+│   │   └── detail/        # Country detail page
+│   └── assets/            # Static assets and mock data
+```
+
+## Available Scripts
+
+- `npm start` - Start development server
+- `npm run build` - Build for production
+- `npm test` - Run unit tests
+- `npm run watch` - Build in watch mode
+
+## Data Source
+
+The application uses mock Olympic Games data located in `src/assets/mock/olympic.json`.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License.
