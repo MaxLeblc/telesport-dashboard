@@ -7,4 +7,4 @@ import { appConfig } from './app/app.config';
 registerLocaleData(fr.default)
 
 bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+  .catch((err) => console.error(err))

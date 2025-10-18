@@ -1,3 +1,18 @@
 <h2>Olympic games app</h2>
 <hr />
-<p>{{ (olympics$ | async)?.length }} data loaded</p>
+<h2>Medals per Country</h2>
+<div>
+  <div>
+    <p>Number of JOs</p>
+    <p>{{ numberOfJos$ | async }}</p>
+  </div>
+  <div>
+    <p>Number of countries</p>
+    <p>{{ numberOfCountries$ | async }}</p>
+  </div>
+</div>
+@if (chartData$ | async; as data) {
+<app-pie-chart [results]="data" (select)="onChartSelect($event)" />
+} @else {
+<p>No data available</p>
+}

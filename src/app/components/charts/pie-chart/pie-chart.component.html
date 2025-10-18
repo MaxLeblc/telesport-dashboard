@@ -1,0 +1,15 @@
+@if (results && results.length > 0) {
+<div class="chart-container">
+  <ngx-charts-pie-chart
+    [results]="results"
+    [gradient]="true"
+    [labels]="true"
+    [doughnut]="false"
+    (select)="onChartSelect($event)"
+  >
+  </ngx-charts-pie-chart>
+</div>
+
+} @else {
+<p>No data available</p>
+}

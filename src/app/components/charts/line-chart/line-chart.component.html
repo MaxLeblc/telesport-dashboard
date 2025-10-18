@@ -1,0 +1,19 @@
+@if (results && results.length > 0) {
+<div class="chart-container">
+  <ngx-charts-line-chart
+    [results]="results"
+    [yScaleMin]="0"
+    [xAxis]="true"
+    [yAxis]="true"
+    [legend]="false"
+    [showXAxisLabel]="true"
+    [showYAxisLabel]="true"
+    [xAxisLabel]="'Year'"
+    [yAxisLabel]="'Number of Medals'"
+    [autoScale]="false"
+  >
+  </ngx-charts-line-chart>
+</div>
+} @else {
+<p>No data available</p>
+}
