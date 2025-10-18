@@ -1,19 +1,27 @@
-<div>
-  <p>{{ countryName$ | async }}</p>
-  <div>
-    <p>Numbers of Entries</p>
-    <p>{{ numberOfJos$ | async }}</p>
-    <p>Total number medals</p>
-    <p>{{ medalsCount$ | async }}</p>
-    <p>Total number of athletes</p>
-    <p>{{ athletesCount$ | async }}</p>
+<div class="container">
+  <h2>{{ countryName$ | async | uppercase }}</h2>
+  <div class="stats-row">
+    <div class="stat-item">
+      <p>Total number of Entries</p>
+      <p>{{ numberOfJos$ | async }}</p>
+    </div>
+    <div class="stat-item">
+      <p>Total number of medals</p>
+      <p>{{ medalsCount$ | async }}</p>
+    </div>
+    <div class="stat-item">
+      <p>Total number of athletes</p>
+      <p>{{ athletesCount$ | async }}</p>
+    </div>
   </div>
-  <div>
+  <div class="chart-container">
     @if (chartData$ | async; as data) {
     <app-line-chart [results]="data" />
     } @else {
     <p>No data available</p>
     }
-    <button (click)="goBack()">Go back</button>
+  </div>
+  <div>
+    <button class="btn-back" (click)="goBack()">Go back</button>
   </div>
 </div>

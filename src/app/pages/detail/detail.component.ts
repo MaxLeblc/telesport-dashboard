@@ -1,6 +1,6 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map, Observable, switchMap, tap } from 'rxjs';
 import { ChartData, LineChartComponent } from '../../components/charts/line-chart/line-chart.component';
 import { OlympicCountry } from '../../core/models/Olympic';
@@ -28,7 +28,8 @@ export class DetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private olympicService: OlympicService
+    private olympicService: OlympicService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -81,5 +82,9 @@ export class DetailComponent implements OnInit {
         }]
       })
     )
+  }
+
+  public goBack(): void {
+    this.router.navigate(['/']);
   }
 }
