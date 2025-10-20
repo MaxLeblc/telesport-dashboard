@@ -1,18 +1,18 @@
 <div class="container">
   <h2>{{ countryName$ | async | uppercase }}</h2>
   <div class="stats-row">
-    <div class="stat-item">
-      <p>Total number of Entries</p>
-      <p>{{ numberOfJos$ | async }}</p>
-    </div>
-    <div class="stat-item">
-      <p>Total number of medals</p>
-      <p>{{ medalsCount$ | async }}</p>
-    </div>
-    <div class="stat-item">
-      <p>Total number of athletes</p>
-      <p>{{ athletesCount$ | async }}</p>
-    </div>
+    <app-stat-item 
+      label="Total number of Entries" 
+      [value]="numberOfJos$ | async">
+    </app-stat-item>
+    <app-stat-item 
+      label="Total number of medals" 
+      [value]="medalsCount$ | async">
+    </app-stat-item>
+    <app-stat-item 
+      label="Total number of athletes" 
+      [value]="athletesCount$ | async">
+    </app-stat-item>
   </div>
   <div class="chart-container">
     @if (chartData$ | async; as data) {

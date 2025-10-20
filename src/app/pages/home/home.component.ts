@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { ChartData, PieChartComponent } from '../../components/charts/pie-chart/pie-chart.component';
+import { StatItemComponent } from '../../components/stat-item/stat-item.component';
 import { OlympicService } from '../../core/services/olympic.service';
 
 @Component({
@@ -11,7 +12,8 @@ import { OlympicService } from '../../core/services/olympic.service';
   imports: [
     CommonModule,
     AsyncPipe,
-    PieChartComponent
+    PieChartComponent,
+    StatItemComponent
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
@@ -34,9 +36,17 @@ export class HomeComponent {
       map((countries) => countries.length)
     )
 
-    // Number of JOs
+    // Number of unique JOs
     this.numberOfJos$ = this.olympicService.getOlympics().pipe(
-      map(countries => countries.reduce((sum, country) => sum + country.participations.length, 0))
+      map(countries => {
+        const uniqueSet = new Set<string>()
+        countries.forEach(country => {
+          country.participations.forEach(participation => {
+            uniqueSet.add(`${participation.year}-${participation.city}`)
+          });
+        });
+        return uniqueSet.size
+      })
     )
 
     // Transform OlympicCountry data to ChartData format
@@ -56,7 +66,6 @@ export class HomeComponent {
   }
 
   public onChartSelect(event: ChartData): void {
-    console.log('Chart segment selected:', event);
     if (event && event.name) {
       this.router.navigate(['/detail'], { queryParams: { country: event.name } })
     }
