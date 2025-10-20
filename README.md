@@ -1,4 +1,5 @@
 # Telesport Dashboard
+[![Angular Version](https://img.shields.io/badge/Angular-20.3%2B-red?logo=angular)](https://angular.io/) [![ngx-charts](https://img.shields.io/badge/Charts-ngx--charts-blue?logo=nodedotjs)](https://swimlane.github.io/ngx-charts/)
 
 A responsive Angular application displaying Olympic Games data with interactive charts and statistics.
 
