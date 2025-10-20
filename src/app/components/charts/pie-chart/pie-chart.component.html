@@ -6,9 +6,10 @@
     [labels]="true"
     [doughnut]="false"
     [trimLabels]="false"
+    [tooltipDisabled]="false"
+    [tooltipText]="getTooltipText"
     (select)="onChartSelect($event)"
-  >
-  </ngx-charts-pie-chart>
+  />
 </div>
 
 } @else {

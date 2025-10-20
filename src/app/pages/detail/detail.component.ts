@@ -1,8 +1,9 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map, Observable, switchMap, tap } from 'rxjs';
+import { map, Observable, switchMap } from 'rxjs';
 import { ChartData, LineChartComponent } from '../../components/charts/line-chart/line-chart.component';
+import { StatItemComponent } from '../../components/stat-item/stat-item.component';
 import { OlympicCountry } from '../../core/models/Olympic';
 import { OlympicService } from '../../core/services/olympic.service';
 
@@ -12,7 +13,8 @@ import { OlympicService } from '../../core/services/olympic.service';
   imports: [
     CommonModule,
     AsyncPipe,
-    LineChartComponent
+    LineChartComponent,
+    StatItemComponent
   ],
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss']
@@ -37,7 +39,7 @@ export class DetailComponent implements OnInit {
     this.countrydata$ = this.route.queryParams.pipe(
       map(params => params['country']),
 
-      tap(countryName => console.log('Name of the country from URL', countryName)),
+
 
       switchMap(countryName =>
         this.olympicService.getOlympics().pipe(

@@ -19,19 +19,17 @@ export class OlympicService {
   loadInitialData(): Observable<OlympicCountry[]> {
     return this.http.get<OlympicCountry[]>(this.olympicUrl).pipe(
       tap((data) => {
-        console.log('Olympic data loaded', data)
+
         this.olympics$.next(data)
         this.error$.next(null) // Success: clean previous errors
       }),
-      // DONE: improve error handling
-      // can be useful to end loading state and let the user know something went wrong
       catchError((error) => {
         console.error('Error loading Olympic data', error)
         this.olympics$.next([]) // Error: push empty array to prevent app from breaking
         this.error$.next('Failed to load Olympic data')
         return of([]) // return empty array to subscribers
       })
-    );
+    )
   }
 
   getOlympics(): Observable<OlympicCountry[]> {

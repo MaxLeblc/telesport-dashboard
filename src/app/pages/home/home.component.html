@@ -1,14 +1,14 @@
 <div class="container">
   <h2>Medals per Country</h2>
   <div class="stats-row">
-    <div class="stat-item">
-      <p>Number of JOs</p>
-      <p>{{ numberOfJos$ | async }}</p>
-    </div>
-    <div class="stat-item">
-      <p>Number of countries</p>
-      <p>{{ numberOfCountries$ | async }}</p>
-    </div>
+    <app-stat-item 
+      label="Number of JOs" 
+      [value]="numberOfJos$ | async">
+    </app-stat-item>
+    <app-stat-item 
+      label="Number of countries" 
+      [value]="numberOfCountries$ | async">
+    </app-stat-item>
   </div>
   <div class="chart-container">
     @if (chartData$ | async; as data) {

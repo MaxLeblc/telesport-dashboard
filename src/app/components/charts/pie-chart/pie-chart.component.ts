@@ -24,4 +24,8 @@ export class PieChartComponent {
   public onChartSelect(event: ChartData): void {
     this.select.emit(event)
   }
+
+  public getTooltipText = (data: any): string => {
+    return `${data.data.name} <br/> ${data.data.value}🏅`;
+  }
 }
