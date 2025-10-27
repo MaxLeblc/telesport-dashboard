@@ -31,7 +31,7 @@ export class HomeComponent {
   ) {
     this.error$ = this.olympicService.getError()
 
-    // Number of athlete per country
+    // Number of countries
     this.numberOfCountries$ = this.olympicService.getOlympics().pipe(
       map((countries) => countries.length)
     )

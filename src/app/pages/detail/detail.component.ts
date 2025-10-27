@@ -25,7 +25,7 @@ export class DetailComponent implements OnInit {
   public numberOfJos$!: Observable<number>
   public medalsCount$!: Observable<number>
   public athletesCount$!: Observable<number>
-  public chartData$!: Observable<ChartData[]>
+  public chartData$!: Observable<ChartData[] | null>
   public error$ = Observable<string | null>
 
   constructor(
@@ -36,21 +36,18 @@ export class DetailComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // Country Name directly from query params
+    this.countryName$ = this.route.queryParams.pipe(
+      map(params => params['country'] ?? 'Unknown')
+    );
+
     this.countrydata$ = this.route.queryParams.pipe(
       map(params => params['country']),
-
-
-
       switchMap(countryName =>
         this.olympicService.getOlympics().pipe(
           map(countries => countries.find(c => c.country === countryName))
         )
       )
-    );
-
-    // Country Name
-    this.countryName$ = this.countrydata$.pipe(
-      map(country => country?.country ?? 'Unknow')
     );
 
     // Number of JOs
@@ -71,9 +68,9 @@ export class DetailComponent implements OnInit {
     // Transform OlympicCountry data to ChartData format
     this.chartData$ = this.countrydata$.pipe(
       map(country => {
-        // If no data, return empty array to avoid breaking the chart
-        if (!country) {
-          return []
+        // If no data, return null to trigger the @else condition
+        if (!country || !country.participations || country.participations.length === 0) {
+          return null
         }
         return [{
           name: country.country,
