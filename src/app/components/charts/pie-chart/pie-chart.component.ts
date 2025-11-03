@@ -8,6 +8,10 @@ export type ChartData = {
   value: number
 }
 
+export type NgxChartEvent = Pick<ChartData, 'name' | 'value'> & {
+  label?: string
+}
+
 @Component({
   selector: 'app-pie-chart',
   standalone: true,
@@ -22,19 +26,19 @@ export class PieChartComponent {
   @Input() results: ChartData[] = []
   @Output() select = new EventEmitter<ChartData>()
 
-  public onChartSelect(event: any): void {
+  public onChartSelect(event: NgxChartEvent): void {
     // Find complete ChartData object with id
     const fullData = this.results.find(item => item.name === event.name)
 
     if (fullData) {
       this.select.emit(fullData)
     } else {
-      // Fallback: emit original event
-      this.select.emit(event)
+      // Fallback: emit original event (cast as ChartData for compatibility)
+      this.select.emit(event as ChartData)
     }
   }
 
-  public getTooltipText = (data: any): string => {
+  public getTooltipText = (data: { data: NgxChartEvent }): string => {
     return `${data.data.name} <br/> ${data.data.value}🏅`;
   }
 }
