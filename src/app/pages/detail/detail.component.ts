@@ -36,18 +36,19 @@ export class DetailComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // Country Name directly from query params
-    this.countryName$ = this.route.queryParams.pipe(
-      map(params => params['country'] ?? 'Unknown')
-    );
-
+    // Retrieve country data by ID from query params
     this.countrydata$ = this.route.queryParams.pipe(
-      map(params => params['country']),
-      switchMap(countryName =>
+      map(params => Number(params['id'])),
+      switchMap(countryId =>
         this.olympicService.getOlympics().pipe(
-          map(countries => countries.find(c => c.country === countryName))
+          map(countries => countries.find(c => c.id === countryId))
         )
       )
+    );
+
+    // Extract country name from retrieved data
+    this.countryName$ = this.countrydata$.pipe(
+      map(country => country?.country ?? 'Unknown')
     );
 
     // Number of JOs

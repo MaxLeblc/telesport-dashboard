@@ -56,18 +56,20 @@ export class HomeComponent {
         if (!countries || countries.length === 0) {
           return []
         }
-        // Map every OlympicCountry object to {name, value} object
+        // Map every OlympicCountry object to {id, name, value} object
         return countries.map(country => ({
+          id: country.id,
           name: country.country,
-          value: country.participations.reduce((sum, participation) => sum + participation.medalsCount, 0) // Reduce to total medals
+          // Sum up all medals from participations
+          value: country.participations.reduce((sum, participation) => sum + participation.medalsCount, 0)
         }))
       })
     )
   }
 
   public onChartSelect(event: ChartData): void {
-    if (event && event.name) {
-      this.router.navigate(['/detail'], { queryParams: { country: event.name } })
+    if (event && event.id) {
+      this.router.navigate(['/detail'], { queryParams: { id: event.id } })
     }
   }
 }

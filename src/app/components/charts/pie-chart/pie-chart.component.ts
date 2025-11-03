@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 export type ChartData = {
+  id: number
   name: string
   value: number
 }
@@ -21,8 +22,16 @@ export class PieChartComponent {
   @Input() results: ChartData[] = []
   @Output() select = new EventEmitter<ChartData>()
 
-  public onChartSelect(event: ChartData): void {
-    this.select.emit(event)
+  public onChartSelect(event: any): void {
+    // Find complete ChartData object with id
+    const fullData = this.results.find(item => item.name === event.name)
+
+    if (fullData) {
+      this.select.emit(fullData)
+    } else {
+      // Fallback: emit original event
+      this.select.emit(event)
+    }
   }
 
   public getTooltipText = (data: any): string => {
